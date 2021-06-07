@@ -13,6 +13,7 @@ import java.util.List;
 
 
 public class Card {
+//    TODO: почистить от лишних пустых строчек
 
     Paint p = new Paint();
 
@@ -33,7 +34,7 @@ public class Card {
             R.color.tileColorB);
 
 
-    public boolean changeColor(float touchX, float touchY) {
+    public boolean changeColor(float touchX, float touchY) { // TODO: переименовать функцию
         if (touchX >= x && touchX <= x + width && touchY >= y && touchY <= y + height) {
             return true;
         } else return false;

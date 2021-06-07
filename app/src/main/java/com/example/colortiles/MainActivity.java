@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+//    TODO: почистить от пустых строчек
 
     Button button;
 

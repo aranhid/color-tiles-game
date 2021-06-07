@@ -24,10 +24,11 @@ import java.util.List;
 
 
 public class TilesView extends View {
+//  TODO: почистить от лишних пустых строчек
 
-    final int PAUSE_LENGTH = 1;
+    final int PAUSE_LENGTH = 1; // TODO: убрать неиспользуемые переменные
     int displayWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-    int openedCards = 0;
+    int openedCards = 0; // TODO: убрать неиспользуемые переменные
 
     float tmpWidth = displayWidth / 5;
     float tmpHeight = displayWidth / 5;
@@ -75,7 +76,7 @@ public class TilesView extends View {
         //      Log.d("myTag", "onTouchEvent: " + cards.get(3).color);
         if (event.getAction() == MotionEvent.ACTION_DOWN && !isOnPauseNow) {
             for (Card c : cards) {
-                if (c.changeColor(x, y)) {
+                if (c.changeColor(x, y)) { // TODO: поменять логику смены цвета
 
                     if (c.color == colors.get(0)) {
                         nextColor = 1;
