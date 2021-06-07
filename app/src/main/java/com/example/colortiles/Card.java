@@ -1,54 +1,55 @@
 package com.example.colortiles;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
 public class Card {
-//    TODO: почистить от лишних пустых строчек
 
     Paint p = new Paint();
+    int color;
+    int currentColorId;
+    float x, y, width, height;
+    List<Integer> colors;
 
-
-    public Card(float x, float y, float width, float height, int color) {
-        this.color = color;
+    public Card(float x, float y, float width, float height, List<Integer> colors, int colorId) {
+        this.currentColorId = colorId;
+        this.colors = colors;
+        setColor(currentColorId);
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
 
-    int color;
-    float x, y, width, height;
-    int nextColor = 0;
-    List<Integer> colors = Arrays.asList(
-            R.color.tileColorR, R.color.tileColorG,
-            R.color.tileColorB);
-
-
-    public boolean changeColor(float touchX, float touchY) { // TODO: переименовать функцию
+    public boolean isTouched(float touchX, float touchY) {
         if (touchX >= x && touchX <= x + width && touchY >= y && touchY <= y + height) {
             return true;
         } else return false;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void draw(Canvas c) {
-        //нарисовать карту в виде прямоугольника
-
-        //p.setColor(colors.get(0));
-        p.setColor(color);
-        //c.drawRect(x, y, x + width, y + height, p);
-        c.drawRoundRect(x, y, x + width, y + height, 25, 25, p);
+    public void switchColor() {
+        if (currentColorId + 1 >= colors.size()) {
+            currentColorId = 0;
+        }
+        else currentColorId++;
+        setColor(currentColorId);
     }
 
+    public void setColor(int colorId) {
+        this.color = colors.get(colorId);
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void draw(Canvas c) {
+        p.setColor(color);
+        c.drawRoundRect(x, y, x + width, y + height, 25, 25, p);
+    }
 }
